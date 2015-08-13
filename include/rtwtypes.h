@@ -1,21 +1,9 @@
-/*
- * Academic License - for use in teaching, academic research, and meeting
- * course requirements at degree granting institutions only.  Not for
- * government, commercial, or other organizational use.
- * File: rtwtypes.h
- *
- * MATLAB Coder version            : 2.8
- * C/C++ source code generated on  : 12-Aug-2015 16:12:39
- */
-
 #ifndef __RTWTYPES_H__
 #define __RTWTYPES_H__
 #ifndef __TMWTYPES__
 #define __TMWTYPES__
 
 /*=======================================================================*
- * Target hardware information
- *   Device type: Generic->MATLAB Host Computer
  *   Number of bits:     char:   8    short:   16    int:  32
  *                       long:  64    long long:  64
  *                       native word size:  64
@@ -148,17 +136,6 @@ typedef struct {
 #  endif
 #endif
 
-/*
- * Maximum length of a MATLAB identifier (function/variable)
- * including the null-termination character. Referenced by
- * rt_logging.c and rt_matrx.c.
- */
 #define TMW_NAME_LENGTH_MAX            64
 #endif
 #endif
-
-/*
- * File trailer for rtwtypes.h
- *
- * [EOF]
- */

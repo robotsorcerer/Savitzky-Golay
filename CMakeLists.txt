@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 2.8.12)
 
-PROJECT(vander)
+PROJECT(savgol)
 
 SET(CMAKE_BUILD_TYPE RelWithDebInfo)
 
-SET(MY_DIR ${vander_SOURCE_DIR})
+SET(MY_DIR ${savgol_SOURCE_DIR})
 
 find_package(PkgConfig)
 pkg_check_modules( EIGEN3 REQUIRED eigen3 )
@@ -31,9 +31,9 @@ INCLUDE_DIRECTORIES(EIGEN3_INCLUDE_DIRS
                 AND "${MY_DIR}/include")
 
 
-message(STATUS "        vander include path:\n")
+message(STATUS "        savgol include path:\n")
 message(STATUS               "${MY_DIR}/include")
 message(STATUS "\neigen3 include path: ${EIGEN3_INCLUDE_DIRS}\n")
 
 #Declare the executable target built from your sources
-add_executable(vander vander.cpp)
+add_executable(savgol savgol.cpp)
