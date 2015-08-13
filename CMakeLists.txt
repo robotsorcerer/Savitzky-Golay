@@ -30,6 +30,10 @@ ENDIF(ENABLE_CXX11)
 INCLUDE_DIRECTORIES(EIGEN3_INCLUDE_DIRS
                 AND "${MY_DIR}/include")
 
+SET(SOURCES
+    src/vander_initialize
+    src/vander/terminate)
+
 
 message(STATUS "        savgol include path:\n")
 message(STATUS               "${MY_DIR}/include")

@@ -4,7 +4,7 @@
 *
 *   MatrixXd B = MatrixXd sgdiff(int k, double F) 
 *      - designs a Savitzky-Golay (polynomial) FIR smoothing
-*   filter B.  The polynomial order, k, must be less than the frame size,
+*   filter B.  The polynomial order, k, must be less than the frame size of the convolution coefficients,
 *   F, and F must be odd. 
 *
 *   Author: Olalekan Ogunmolu  
@@ -98,7 +98,7 @@ void sgdiff(int k, double Fd)
   cout << "\nIntermediate matrix: \n" << inter << endl;
 
   //Compute the QR Decomposition
-  ColPivHouseholderQR<MatrixXd> qr(inter.rows(), inter.cols());
+  HouseholderQR<MatrixXd> qr(inter);
   qr.compute(inter);
 
   FullPivLU<MatrixXd>lu_decomp(inter);
@@ -123,8 +123,10 @@ void sgdiff(int k, double Fd)
 
   else    */      //For rank deficient matrices
               
-    MatrixXd R = qr.matrixR().topLeftCorner(lu_decomp.rank(), lu_decomp.rank()).template triangularView<Upper>();  //retrieve the R - Matrix
-
+    MatrixXd Q = qr.householderQ();
+    MatrixXd R = qr.matrixQR().topLeftCorner(Rank, Rank).template triangularView<Upper>();
+    //MatrixXd R = qr.matrixR().topLeftCorner(Rank, Rank).template triangularView<Upper>();  //retrieve the R - Matrix
+    cout << "\n Q is: " << Q << endl;
     cout <<"\n R with rank deficiency: \n" << R << endl; 
 
     //Compute Matrix of Differentiators
