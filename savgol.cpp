@@ -79,7 +79,7 @@ MatrixXi vander(const int F, double A[25])
   return A_fliplr;
 }
 
-/*Compute S-Golay Matrix of differentiators*/
+/*Computes S-Golay Matrix of differentiators*/
 
 MatrixXd sgdiff(int k, double Fd)
 {
@@ -158,7 +158,18 @@ void savgolfilt(VectorXf x, int k, int F)
   Matrix4d DIM = Matrix4d::Zero();        //initialize DIM as a matrix of zeros if it is not supplied
   cout <<"\nDIM: \n" << DIM <<endl;
   //Reshape depth values by working along the first non-singleton dimension
+  int siz = x.size();
+  cout <<"\nSize of x: \n" << siz << endl;
 
+  //Find leading singleton dimensions
+  
+  //Pre-allocate output vector
+  VectorXd y(siz);// = VectorXd::Zero();
+  cout <<"\ny: \n" << y << endl;
+
+  //Compute the transient on
+  y = VectorXd::LinSpaced(siz, 1, (F+1)/2-1);
+  cout <<"\nnewy: \n" << y << endl;
 }
 
 
