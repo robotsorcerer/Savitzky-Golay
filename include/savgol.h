@@ -11,6 +11,7 @@
 using namespace Eigen;
 
 // Function Declarations
-extern MatrixXi vander(const int F, double A[25]);
+//extern MatrixXi vander(const int F, double A[25]);
+extern MatrixXi vander(const int F);
 
 #endif
