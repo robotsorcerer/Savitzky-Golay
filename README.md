@@ -10,7 +10,7 @@ In order to be able to compile this file, you would need to install the [Eigen3 
 
 *  `MatrixXi vander(const int F)`
     	
-    -computes the [vandermonde matrix](https://en.wikipedia.org/wiki/Vandermonde_matrix) and the polynomial of basis vectors and flips it column-wise from left to right
+    - computes the [vandermonde matrix](https://en.wikipedia.org/wiki/Vandermonde_matrix) and the polynomial of basis vectors and flips it column-wise from left to right
 
 *   `MatrixXf B = MatrixXf sgdiff(int k, double F)`	
 		
@@ -25,7 +25,7 @@ There is a `CMakeLists.txt` file in the project root folder. From the project ro
 3.	Build your executable: `make`
 4. 	Run the executable:	`./savgol`
 
-If you have issues running the files, please use the issues tab to open a bug or issues. I will generally respond within a 24-hour period.
+If you have issues running the files, please use the issues tab to open a bug. I will generally respond within a 24-hour period.
        
  >Reference: **INTRODUCTION TO SIGNAL PROCESSING** [Chapter 8; Section 8.3.5]
                 Sophocles J. Orfanidis, Prentice Hall, 2010
