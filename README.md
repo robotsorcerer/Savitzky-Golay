@@ -18,14 +18,14 @@ In order to be able to compile this file, you would need to install the [Eigen3 
 
 ####Compilation
 
-* There is a `CMakeLists.txt` file in the project root folder. From the project root directory:
+There is a `CMakeLists.txt` file in the project root folder. From the project root directory:
 
-*	Create a build directory: `mkdir build && cd build`
-* 	Compile the `cpp` code with the command, 	`cmake ../`
-*	Build your executable using `make`
-* 	Run the executable:	`./savgol`
+1.	Create a build directory: `mkdir build && cd build`
+2. 	Compile the `cpp` code with the command, 	`cmake ../`
+3.	Build your executable using `make`
+4. 	Run the executable:	`./savgol`
 
-
+If you have issues running the files, please use the issues tab to open a bug or issues. I will generally respond within a 24-hour period.
        
-*   >Reference: **INTRODUCTION TO SIGNAL PROCESSING** [Chapter 8; Section 8.3.5]
+ >Reference: **INTRODUCTION TO SIGNAL PROCESSING** [Chapter 8; Section 8.3.5]
                 Sophocles J. Orfanidis, Prentice Hall, 2010
