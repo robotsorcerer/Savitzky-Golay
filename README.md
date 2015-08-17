@@ -1,8 +1,6 @@
-#Savitzky-Golay Filter in C++
+##Savitzky-Golay Filter in C++
 
-##Author: [Olalekan P. Ogunmolu](http://lakehanne.github.io)<<olalekan.ogunmolu@utdallas.edu>>, [SEnsing, Robotics, Vision, Control and Estimation (SERVICE) Lab](http://ecs.utdallas.edu/research/researchlabs/service-lab/), University of Texas at Dallas, Richardson, TX, USA
-
-Copyright August 2015
+Author: [Olalekan P. Ogunmolu](http://lakehanne.github.io)<<olalekan.ogunmolu@utdallas.edu>>, [SEnsing, Robotics, Vision, Control and Estimation (SERVICE) Lab](http://ecs.utdallas.edu/research/researchlabs/service-lab/), University of Texas at Dallas, Richardson, TX, USA
 
 ##Table of Contents
 - [CHANGELOG](#changelog)
@@ -13,14 +11,14 @@ Copyright August 2015
 - [Citation](#citation)
 - [ISSUES](#issues)
 
-##CHANGELOG
+###CHANGELOG
 *	Added citation to README (August 14, 2015)
 *   Added examples to `int main()` function (August 15, 2015)
 
-##INTRODUCTION
+###INTRODUCTION
 This code nicely computes the Vandermonde matrix, Savitzky-Golay differentiation filters and smoothing coefficients for any noisy, and sequantial signal. It is a textbook implementation of the Savitzky-Golay Filter. It can be run offline with collected data but needs slight [tweaking](#usage) if it must be run with on-line data in real time. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort, I presume.
 
-##DEPENDENCIES
+###DEPENDENCIES
 
 In order to be able to compile this file, you would need to install the [Eigen3 Library](http://eigen.tuxfamily.org/index.php?title=Main_Page) to do the linear algebra of the matrices, vectors and related algorithms I used. You can install it by downloading the 3.2.5 library which I used from [here](http://bitbucket.org/eigen/eigen/get/3.2.5.tar.gz) and following the `README` instructions after unpacking the tarball to install. I have not tested it with other versions of the library. If you are having problems running this code in other versions of Eigen, please raise an issue using the link on the right of this page or go through the [eigen documentation page](http://eigen.tuxfamily.org/dox/index.html) if you are impatient.
 
