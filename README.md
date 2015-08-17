@@ -23,14 +23,17 @@ In order to be able to compile this file, you would need to install the [Eigen3 
 
 ###Usage
 
-*  `MatrixXi vander(const int F)`
+*  `MatrixXi vander(const int F);`
     	
     - computes the [vandermonde matrix](https://en.wikipedia.org/wiki/Vandermonde_matrix) and the polynomial of basis vectors and flips it column-wise from left to right
 
-*   `MatrixXf B = MatrixXf sgdiff(int k, double F)`	
+*   `MatrixXf B = MatrixXf sgdiff(int k, double F);`	
 		
 	- designs a Savitzky-Golay FIR smoothing filter B with polynomial order _**k**_ and frame size _**F**_ of the convolution coefficients.  The polynomial order, _**k**_, must be less than the frame size _**F**_ and _**F**_ must be odd. 
 
+*	`savgolfilt(x, x_on, k, F);`
+	
+	-computes the smoothed values of the signal x, whose tansient on is `x_on` initialized with size F.
 
 *	**Note**
 	In calculating the transient off, x_off will be the last (F-1) x values, where x's are the data sequence we want to filter.If you are smoothing data offline, then this code will work seamlessly. Just load your data in the `main()` function where, for an example, I have used linearly spaced values between 900 and 980 at a frame 5 size for my steady state values and initiated the transient on with frame sized linearly spaced values between 960 and 980. 
