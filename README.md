@@ -1,28 +1,27 @@
 ##Savitzky-Golay Filter in C++
 
-Author: [Olalekan P. Ogunmolu](http://lakehanne.github.io)<<olalekan.ogunmolu@utdallas.edu>>, [SEnsing, Robotics, Vision, Control and Estimation (SERVICE) Lab](http://ecs.utdallas.edu/research/researchlabs/service-lab/), University of Texas at Dallas, Richardson, TX, USA
+Author: [Olalekan P. Ogunmolu](http://lakehanne.github.io)
 
+<!--<<olalekan.ogunmolu@utdallas.edu>>, [SEnsing, Robotics, Vision, Control and Estimation (SERVICE) Lab](http://ecs.utdallas.edu/research/researchlabs/service-lab/), University of Texas at Dallas, Richardson, TX, USA
+-->
 ##Table of Contents
-- [Changelog](#changelog)
 - [Introduction](#introduction)
 - [Dependencies](#dependencies)
 - [Usage](#usage)
-- [Compilation](#compilation-and-running-the-project)
+- [Compilation](#compilation)
 - [Citation](#citation)
 - [Issues](#issues)
+- [Changelog](#changelog)
 
-###CHANGELOG
-*	Added citation to README (August 14, 2015)
-*   Added examples to `int main()` function (August 15, 2015)
 
-###INTRODUCTION
+###Introduction
 This code nicely computes the Vandermonde matrix, Savitzky-Golay differentiation filters and smoothing coefficients for any noisy, and sequantial signal. It is a textbook implementation of the Savitzky-Golay Filter. It can be run offline with collected data but needs slight [tweaking](#usage) if it must be run with on-line data in real time. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort, I presume.
 
-###DEPENDENCIES
+###Dependencies
 
 In order to be able to compile this file, you would need to install the [Eigen3 Library](http://eigen.tuxfamily.org/index.php?title=Main_Page) to do the linear algebra of the matrices, vectors and related algorithms I used. You can install it by downloading the 3.2.5 library which I used from [here](http://bitbucket.org/eigen/eigen/get/3.2.5.tar.gz) and following the `README` instructions after unpacking the tarball to install. I have not tested it with other versions of the library. If you are having problems running this code in other versions of Eigen, please raise an issue using the link on the right of this page or go through the [eigen documentation page](http://eigen.tuxfamily.org/dox/index.html) if you are impatient.
 
-###USAGE
+###Usage
 
 *  `MatrixXi vander(const int F)`
     	
@@ -38,7 +37,7 @@ In order to be able to compile this file, you would need to install the [Eigen3 
 	
 	Note, if you are smoothing data in real time, you need to find a way to let your compiler pick the last F-length samples from your data in order to compute your transient off, i.e., x_off. You could have the program wait for x_milliseconds after stopping your code before you pick the transient off, for example.
 
-###COMPILATION
+###Compilation
 
 There is a `CMakeLists.txt` file in the project root folder. From the project root directory:
 
@@ -48,7 +47,7 @@ There is a `CMakeLists.txt` file in the project root folder. From the project ro
 4. 	Run the executable:	`./savgol`
 
 
-###CITATION
+###Citation
 
 If you used `Savitzky-Golay` for your work, please cite it.
 
@@ -63,8 +62,12 @@ If you used `Savitzky-Golay` for your work, please cite it.
   note = {Accessed August 15, 2015}
 }
 ```
-####ISSUES
+####Issues
 If you have issues running the files, please use the issues tab to open a bug. I will generally respond within a 24-hour period.
+
+###Changelog
+*	Added citation to README (August 14, 2015)
+*   Added examples to `int main()` function (August 15, 2015)
        
  >Reference: **INTRODUCTION TO SIGNAL PROCESSING** [Chapter 8; Section 8.3.5]
                 Sophocles J. Orfanidis, Prentice Hall, 2010
