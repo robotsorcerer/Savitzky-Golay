@@ -69,5 +69,7 @@ If you have issues running the files, please use the issues tab to open a bug. I
 *	Added citation to README (August 14, 2015)
 *   Added examples to `int main()` function (August 15, 2015)
        
- >Reference: **INTRODUCTION TO SIGNAL PROCESSING** [Chapter 8; Section 8.3.5]
+```markdown
+Reference: **INTRODUCTION TO SIGNAL PROCESSING** [Chapter 8; Section 8.3.5]
                 Sophocles J. Orfanidis, Prentice Hall, 2010
+```
