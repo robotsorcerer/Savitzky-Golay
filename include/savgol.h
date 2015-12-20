@@ -4,8 +4,6 @@
 // Include Files
 #include <stddef.h>
 #include <stdlib.h>
-#include "rtwtypes.h"
-#include "vander_types.h"
 #include <Eigen/Dense>
 #include <Eigen/LU>
 #include <Eigen/Core>
