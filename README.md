@@ -2,8 +2,6 @@
 
 Author: [Olalekan P. Ogunmolu](http://lakehanne.github.io)
 
-<!--<<olalekan.ogunmolu@utdallas.edu>>, [SEnsing, Robotics, Vision, Control and Estimation (SERVICE) Lab](http://ecs.utdallas.edu/research/researchlabs/service-lab/), University of Texas at Dallas, Richardson, TX, USA
--->
 ##Table of Contents
 - [Introduction](#introduction)
 - [Dependencies](#dependencies)
@@ -15,7 +13,7 @@ Author: [Olalekan P. Ogunmolu](http://lakehanne.github.io)
 
 
 ###Introduction
-This code nicely computes the Vandermonde matrix, Savitzky-Golay differentiation filters and smoothing coefficients for any noisy, and sequantial signal. It is a textbook implementation of the Savitzky-Golay Filter. It can be run offline with collected data but needs slight [tweaking](#usage) if it must be run with on-line data in real time. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort, I presume.
+This code nicely computes the Vandermonde matrix, Savitzky-Golay differentiation filters and smoothing coefficients for any noisy, and sequantial signal. It is a textbook implementation of the Savitzky-Golay Filter. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort.
 
 ###Dependencies
 
@@ -25,11 +23,62 @@ In order to be able to compile this file, you would need to install the [Eigen3 
 
 * `./savgol`
 
-  - computes the savitzky-golay filter coefficients with frame size, F = 5 and polynomial order 3 (these are the default parameters of the filter).
+  - computes the savitzky-golay filter coefficients with frame size, F = 5 and polynomial order 3 (these are the default parameters of the filter) for linearly spaced data points between x_min = 900 and x_max = 980.
 
-  To change the values of the frame size and polynomial order, do
+  - you could also read in a text file of your data points from a txt file and have the matrix of differentiators as well as filtered points generated.
+
+  - To change the values of the frame size and polynomial order, do
 
   `./savgoal 10 5` where F = 10 and k = 5
+
+  - To pass in your arbitrary data points between a value x_min and x_max, pass in the following argum,ents in order: ./savgoal `F` `k` `x_min` `x_max`.
+
+  The filtered values are returned onto the console. Note that the Frame size should ideally be odd
+
+### RESULTS
+The savgol filter tries to compute the moving average of the time-series data fed into it. For example, with a frame size of 9 and polynomial order of 5 for numbers linearly spaced between `100` and `1000`, we obtain the following results by running this code:
+
+```bash
+Frame size: 9; Polynomial order: 5 
+
+ Vandermonde Matrix: 
+     1     -4     16    -64    256  -1024   4096 -16384  65536
+     1     -3      9    -27     81   -243    729  -2187 134737
+     1     -2      4     -8     16    -32     64   -128      0
+     1     -1      1     -1      1     -1      1     -1      1
+     1      0      0      0      0      0      0      0      0
+     1      1      1      1      1      1      1      1      1
+     1      2      4      8     16     32     64    128    256
+     1      3      9     27     81    243    729   2187   6561
+     1      4     16     64    256   1024   4096  16384  65536
+
+Filtered values in the range 
+  100 212.5   325 437.5   550 662.5   775 887.5  1000
+ are: 
+662.5   775 887.5  1000   550   100 212.5   325 437.5
+
+```
+
+Or for numbers linearly spaced between 100 and 300, with F = 7 and k = 5, we obtain:
+
+```bash
+Frame size: 7; polynomial order: 5 
+
+ Vandermonde Matrix: 
+     1     -3      9    -27     81   -243    729
+     1     -2      4     -8     16    -32 134865
+     1     -1      1     -1      1     -1      0
+     1      0      0      0      0      0      0
+     1      1      1      1      1      1      1
+     1      2      4      8     16     32     64
+     1      3      9     27     81    243    729
+
+
+Filtered values in the range 
+    100 133.333 166.667     200 233.333 266.667     300
+ are: 
+233.333 266.667     300     200     100 133.333 166.667
+```
 
 ###Components
 *  `MatrixXi vander(const int F);`
@@ -82,11 +131,13 @@ If you have issues running the files, please use the issues tab to open a bug. I
 * Added examples to `int main()` function (August 15, 2015)
 * Modified frame size and polynomial order to be reconfigurable at run time (July 1, 2016)
        
+###TODO
+Add a plotter to plot the filtered values on a gtk chart?
 
 ###Reference
 
 **INTRODUCTION TO SIGNAL PROCESSING** 
 
   Sophocles J. Orfanidis, Prentice Hall, 2010
-  
+
   *Chapter 8; Section 8.3.5*

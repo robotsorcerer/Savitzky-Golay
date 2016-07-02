@@ -28,7 +28,7 @@ using namespace std;
 //Global Variables
 int F;      //Frame Size
 int k;      //Example Polynomial Order
-double Fd = (double) F;        //sets the frame size for the savgol differentiation coefficients. This must be odd
+double Fd ;
 
 // Function Prototypes
 MatrixXi vander(const int F);
@@ -191,32 +191,38 @@ RowVectorXf savgolfilt(VectorXf x, VectorXf x_on, int k, int F)
 
 int main (int argc, char** argv)
 {
+  float x_min, x_max;
   if(argc>1)
   {    
     for(size_t i = 1; i < argc; ++i )
     {
       F = atoi(argv[1]);
       k = atoi(argv[2]);
+      x_min = atoi(argv[3]);
+      x_max = atoi(argv[4]);
     }
   }
-  else
+  else  //use default values
   {
     F = 5; k = 3;
+    x_min = 900.0; x_max = 980.0;
   }
+
+  Fd = (double) F;        //sets the frame size for the savgol differentiation coefficients. This must be odd
 
   MatrixXi s = vander(F);        //Compute vandermonde matrix
 
-  std::cout << "F: " << F << "\tk: " << k << std::endl;
+  std::cout << "Frame size: " << F << "; \tPolynomial order: " << k << std::endl;
   cout << "\n Vandermonde Matrix: \n" << s  << endl;
 
   k = atoi(argv[2]) or 3;
 
   MatrixXf B = sgdiff(k, Fd);
 
-  VectorXf x_on = VectorXf::LinSpaced(F, 940, 960);     //collect the first five values into a matrix
+  VectorXf x_on = VectorXf::LinSpaced(F, x_min, x_max);     //collect the first five values into a matrix
 
   //To express as a real filtering operation, we shift x around the nth time instant
-  VectorXf x = VectorXf::LinSpaced(F, 900.0, 980.0);
+  VectorXf x = VectorXf::LinSpaced(F, x_min, x_max);
 
   RowVectorXf Filter = savgolfilt(x, x_on, k, F);
 
