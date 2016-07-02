@@ -26,8 +26,8 @@ using namespace Eigen;
 using namespace std;
 
 //Global Variables
-int F = 5;      //Frame Size
-int k = 3;      //Example Polynomial Order
+int F;      //Frame Size
+int k;      //Example Polynomial Order
 double Fd = (double) F;        //sets the frame size for the savgol differentiation coefficients. This must be odd
 
 // Function Prototypes
@@ -189,11 +189,27 @@ RowVectorXf savgolfilt(VectorXf x, VectorXf x_on, int k, int F)
 }
 
 
-int main ()
+int main (int argc, char** argv)
 {
+  if(argc>1)
+  {    
+    for(size_t i = 1; i < argc; ++i )
+    {
+      F = atoi(argv[1]);
+      k = atoi(argv[2]);
+    }
+  }
+  else
+  {
+    F = 5; k = 3;
+  }
+
   MatrixXi s = vander(F);        //Compute vandermonde matrix
 
+  std::cout << "F: " << F << "\tk: " << k << std::endl;
   cout << "\n Vandermonde Matrix: \n" << s  << endl;
+
+  k = atoi(argv[2]) or 3;
 
   MatrixXf B = sgdiff(k, Fd);
 

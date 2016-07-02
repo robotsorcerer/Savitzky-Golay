@@ -23,6 +23,15 @@ In order to be able to compile this file, you would need to install the [Eigen3 
 
 ###Usage
 
+* `./savgol`
+
+  - computes the savitzky-golay filter coefficients with frame size, F = 5 and polynomial order 3 (these are the default parameters of the filter).
+
+  To change the values of the frame size and polynomial order, do
+
+  `./savgoal 10 5` where F = 10 and k = 5
+
+###Components
 *  `MatrixXi vander(const int F);`
     	
     - computes the [vandermonde matrix](https://en.wikipedia.org/wiki/Vandermonde_matrix) and the polynomial of basis vectors and flips it column-wise from left to right
@@ -33,7 +42,7 @@ In order to be able to compile this file, you would need to install the [Eigen3 
 
 *	`savgolfilt(x, x_on, k, F);`
 	
-	-computes the smoothed values of the signal x, whose tansient on is `x_on` initialized with size F.
+	- computes the smoothed values of the signal x, whose tansient on is `x_on` initialized with size F.
 
 *	**Note**
 	In calculating the transient off, x_off will be the last (F-1) x values, where x's are the data sequence we want to filter.If you are smoothing data offline, then this code will work seamlessly. Just load your data in the `main()` function where, for an example, I have used linearly spaced values between 900 and 980 at a frame 5 size for my steady state values and initiated the transient on with frame sized linearly spaced values between 960 and 980. 
@@ -70,9 +79,11 @@ If you have issues running the files, please use the issues tab to open a bug. I
 
 ###Changelog
 *	Added citation to README (August 14, 2015)
-*   Added examples to `int main()` function (August 15, 2015)
+* Added examples to `int main()` function (August 15, 2015)
+* Modified frame size and polynomial order to be reconfigurable at run time (July 1, 2016)
        
 ```markdown
-Reference: **INTRODUCTION TO SIGNAL PROCESSING** [Chapter 8; Section 8.3.5]
-                Sophocles J. Orfanidis, Prentice Hall, 2010
+Reference: <b>INTRODUCTION TO SIGNAL PROCESSING</b> 
+            Sophocles J. Orfanidis, Prentice Hall, 2010
+            <i>Chapter 8; Section 8.3.5</i>
 ```
