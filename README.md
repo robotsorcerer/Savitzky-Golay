@@ -82,8 +82,8 @@ If you have issues running the files, please use the issues tab to open a bug. I
 * Added examples to `int main()` function (August 15, 2015)
 * Modified frame size and polynomial order to be reconfigurable at run time (July 1, 2016)
        
-```markdown
-Reference: <b>INTRODUCTION TO SIGNAL PROCESSING</b> 
-            Sophocles J. Orfanidis, Prentice Hall, 2010
-            <i>Chapter 8; Section 8.3.5</i>
-```
+
+###Reference
+**INTRODUCTION TO SIGNAL PROCESSING** 
+  Sophocles J. Orfanidis, Prentice Hall, 2010
+  *Chapter 8; Section 8.3.5*
