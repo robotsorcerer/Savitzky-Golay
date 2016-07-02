@@ -23,20 +23,20 @@ In order to be able to compile this file, you would need to install the [Eigen3 
 
 * `./savgol`
 
-  - computes the savitzky-golay filter coefficients with frame size, F = 5 and polynomial order 3 (these are the default parameters of the filter) for linearly spaced data points between x_min = 900 and x_max = 980.
+  - computes the savitzky-golay filter coefficients with frame size, `F = 5` and polynomial order 3 (these are the default parameters of the filter) for linearly spaced data points between `x_min = 900` and `x_max = 980`.
 
   - you could also read in a text file of your data points from a txt file and have the matrix of differentiators as well as filtered points generated.
 
   - To change the values of the frame size and polynomial order, do
 
-  `./savgoal 10 5` where F = 10 and k = 5
+  `./savgoal 9 5` where `F = 9` and `k = 5`.
 
   - To pass in your arbitrary data points between a value x_min and x_max, pass in the following argum,ents in order: ./savgoal `F` `k` `x_min` `x_max`.
 
   The filtered values are returned onto the console. Note that the Frame size should ideally be odd
 
 ### RESULTS
-The savgol filter tries to compute the moving average of the time-series data fed into it. For example, with a frame size of 9 and polynomial order of 5 for numbers linearly spaced between `100` and `1000`, we obtain the following results by running this code:
+The savgol filter tries to compute the moving average of the time-series data fed into it. For example, with a frame size of `9` and polynomial order of `5` for numbers linearly spaced between `100` and `1000`, we obtain the following results by running this code:
 
 ```bash
 Frame size: 9; Polynomial order: 5 
@@ -59,7 +59,7 @@ Filtered values in the range
 
 ```
 
-Or for numbers linearly spaced between 100 and 300, with F = 7 and k = 5, we obtain:
+Or for numbers linearly spaced between `100` and `300`, with `F = 7` and `k = 5`, we obtain:
 
 ```bash
 Frame size: 7; polynomial order: 5 
@@ -94,7 +94,7 @@ Filtered values in the range
 	- computes the smoothed values of the signal x, whose tansient on is `x_on` initialized with size F.
 
 *	**Note**
-	In calculating the transient off, x_off will be the last (F-1) x values, where x's are the data sequence we want to filter.If you are smoothing data offline, then this code will work seamlessly. Just load your data in the `main()` function where, for an example, I have used linearly spaced values between 900 and 980 at a frame 5 size for my steady state values and initiated the transient on with frame sized linearly spaced values between 960 and 980. 
+	In calculating the transient off, `x_off` will be the last `(F-1)` `x` values, where `x`'s are the data sequence we want to filter.If you are smoothing data offline, then this code will work seamlessly. Just load your data in the `main()` function where, for an example, I have used linearly spaced values between `900` and `980` at a frame `5` size for my steady state values. 
 	
 	Note, if you are smoothing data in real time, you need to find a way to let your compiler pick the last F-length samples from your data in order to compute your transient off, i.e., x_off. You could have the program wait for x_milliseconds after stopping your code before you pick the transient off, for example.
 
