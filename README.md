@@ -19,7 +19,7 @@ Below are examples of how the filter smoothes out a noisy depth map data from th
 
 <img src="/include/Protonect_Uncalibrated.jpg" height="500px" >
 <img src="/include/ROS_Calibrated.jpg" height="500px" >
-<img src="/include/Savitzky-Golay_smoothing_filter.jpg" height="500px" width="706px">
+<img src="/include/Savitzky-Golay_smoothing_filter.jpg" height="500px">
 
 ###Dependencies
 
