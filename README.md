@@ -15,6 +15,13 @@ Author: [Olalekan P. Ogunmolu](http://lakehanne.github.io)
 ###Introduction
 This code nicely computes the Vandermonde matrix, Savitzky-Golay differentiation filters and smoothing coefficients for any noisy, and sequantial signal. It is a textbook implementation of the Savitzky-Golay Filter. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort.
 
+Below are examples of what the filter does on a noisy depth map data from the Kinect time-of-flight sensor:
+
+
+<img src="/include/Protonect_Uncalibrated.jpg" height="200px">
+<img src="/include/ROS_Calibrated.jpg" height="200px">
+<img src="/include/Savitzky-Golay_smoothing_filter.jpg" width="706px">
+
 ###Dependencies
 
 In order to be able to compile this file, you would need to install the [Eigen3 Library](http://eigen.tuxfamily.org/index.php?title=Main_Page) to do the linear algebra of the matrices, vectors and related algorithms I used. You can install it by downloading the 3.2.5 library which I used from [here](http://bitbucket.org/eigen/eigen/get/3.2.5.tar.gz) and following the `README` instructions after unpacking the tarball to install. I have not tested it with other versions of the library. If you are having problems running this code in other versions of Eigen, please raise an issue using the link on the right of this page or go through the [eigen documentation page](http://eigen.tuxfamily.org/dox/index.html) if you are impatient.
@@ -24,8 +31,6 @@ In order to be able to compile this file, you would need to install the [Eigen3 
 * `./savgol`
 
   - computes the savitzky-golay filter coefficients with frame size, `F = 5` and polynomial order 3 (these are the default parameters of the filter) for linearly spaced data points between `x_min = 900` and `x_max = 980`.
-
-  - you could also read in a text file of your data points from a txt file and have the matrix of differentiators as well as filtered points generated.
 
   - To change the values of the frame size and polynomial order, do
 
