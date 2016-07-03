@@ -1,6 +1,6 @@
 ##Savitzky-Golay Filter in C++
 
-Author: [Olalekan P. Ogunmolu](http://lakehanne.github.io)
+Author: [Olalekan P. Ogunmolu](http://ecs.utdallas.edu/~opo140030)
 
 ##Table of Contents
 - [Introduction](#introduction)
@@ -19,7 +19,7 @@ Below are examples of how the filter smoothes out a noisy depth map data from th
 
 <img src="/include/Protonect_Uncalibrated.jpg" height="500px" >
 <img src="/include/ROS_Calibrated.jpg" height="500px" >
-<img src="/include/Savitzky-Golay_smoothing_filter.jpg" height="500px">
+<!-- <img src="/include/Savitzky-Golay_smoothing_filter.jpg" height="500px"> -->
 
 ###Dependencies
 
