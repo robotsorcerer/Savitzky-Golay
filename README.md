@@ -15,11 +15,10 @@ Author: [Olalekan P. Ogunmolu](http://lakehanne.github.io)
 ###Introduction
 This code nicely computes the Vandermonde matrix, Savitzky-Golay differentiation filters and smoothing coefficients for any noisy, and sequantial signal. It is a textbook implementation of the Savitzky-Golay Filter. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort.
 
-Below are examples of what the filter does on a noisy depth map data from the kinect time-of-flight sensor:
+Below are examples of how the filter smoothes out a noisy depth map data from the kinect time-of-flight sensor:
 
-
-<img src="/include/Protonect_Uncalibrated.jpg" height="300px">
-<img src="/include/ROS_Calibrated.jpg" height="300px">
+<img src="/include/Protonect_Uncalibrated.jpg" height="700px">
+<img src="/include/ROS_Calibrated.jpg" height="700px">
 <img src="/include/Savitzky-Golay_smoothing_filter.jpg" width="706px">
 
 ###Dependencies
