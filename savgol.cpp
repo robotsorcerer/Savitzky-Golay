@@ -49,7 +49,7 @@ MatrixXi vander(const int F)
 }
 
 /*Compute the S-Golay Matrix of differentiators*/
-MatrixXf sgdiff(int k, double Fd, int F)
+MatrixXf sgdiff(int k, int F, double Fd)
 {
   //We set the weighting matrix to an identity matrix if no weighting matrix is supplied
   MatrixXf W = MatrixXf::Identity(Fd, Fd);      
