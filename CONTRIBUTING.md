@@ -1,4 +1,4 @@
-# Contributing to Savitzky-Golay (C++11, 14, nn, cutorch, cunn)
+# Contributing to Savitzky-Golay (C++11, 14, nn)
 
 Thanks a lot! There are plenty of ways you can help.
 
@@ -18,8 +18,8 @@ the preferred channel for [bug reports](#bugs), [features requests](#features)
 and [submitting pull requests](#pull-requests), but please respect the following
 restrictions:
 
-* Please **do not** use the issue tracker for personal support requests (email the maintainer
-  [Email](lexilighty@gmail.com)).
+* Please **do not** use the issue tracker for personal support requests (email the maintainer:
+  [lexilighty@gmail.com](lexilighty@gmail.com)).
 
 <a name="bugs"></a>
 ## Bug reports
