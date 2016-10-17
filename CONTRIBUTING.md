@@ -1,4 +1,4 @@
-# Contributing to Savitzky-Golay (C++11, 14, nn)
+# Contributing to Savitzky-Golay (C++11, 14)
 
 Thanks a lot! There are plenty of ways you can help.
 
