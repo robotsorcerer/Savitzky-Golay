@@ -1,17 +1,10 @@
 #ifndef __SAVGOL_H__
 #define __SAVGOL_H__
 
-// Include Files
-#include <stddef.h>
-#include <stdlib.h>
-#include <Eigen/Dense>
-#include <Eigen/LU>
 #include <Eigen/Core>
-#include <Eigen/QR>
 
-using namespace Eigen;
-
-// Function Declarations
-extern MatrixXi vander(const int F);
+Eigen::MatrixXi vander(const int F);
+Eigen::MatrixXf sgdiff(int k, int F, double Fd);
+Eigen::RowVectorXf savgolfilt(Eigen::VectorXf const & x, Eigen::VectorXf const & x_on, int k, int F, double Fd);
 
 #endif

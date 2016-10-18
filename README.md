@@ -17,9 +17,9 @@ This code nicely computes the Vandermonde matrix, Savitzky-Golay differentiation
 
 Below are examples of how the filter smoothes out a noisy depth map data from the kinect time-of-flight sensor:
 
-<img src="/include/Protonect_Uncalibrated.jpg" height="500px" >
-<img src="/include/ROS_Calibrated.jpg" height="500px" >
-<!-- <img src="/include/Savitzky-Golay_smoothing_filter.jpg" height="500px"> -->
+<img src="/images/Protonect_Uncalibrated.jpg" height="500px" >
+<img src="/images/ROS_Calibrated.jpg" height="500px" >
+<!-- <img src="/images/Savitzky-Golay_smoothing_filter.jpg" height="500px"> -->
 
 ###Dependencies
 

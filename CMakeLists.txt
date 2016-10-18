@@ -36,4 +36,4 @@ message(STATUS               "${MY_DIR}/include")
 message(STATUS "\neigen3 include path: ${EIGEN3_INCLUDE_DIRS}\n")
 
 #Declare the executable target built from your sources
-add_executable(savgol savgol.cpp)
+add_executable(savgol savgol.cpp example.cpp)

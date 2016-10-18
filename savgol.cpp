@@ -19,21 +19,14 @@
 
 // Include Files
 #include "savgol.h"
-#include <iostream>
-#include <cmath>
+
+#include <Eigen/Dense>
+#include <Eigen/LU>
+#include <Eigen/Core>
+#include <Eigen/QR>
 
 using namespace Eigen;
 using namespace std;
-
-//Global Variables
-int F;      //Frame Size
-int k;      //Example Polynomial Order
-double Fd ;
-
-// Function Prototypes
-MatrixXi vander(const int F);
-MatrixXf sgdiff(int k, double Fd);
-RowVectorXf savgolfilt(VectorXf x, VectorXf x_on, int k, int F, MatrixXf DIM);
 
 /*Compute the polynomial basis vectors s_0, s_1, s_2 ... s_n using the vandermonde matrix.*/
 MatrixXi vander(const int F)
@@ -56,7 +49,7 @@ MatrixXi vander(const int F)
 }
 
 /*Compute the S-Golay Matrix of differentiators*/
-MatrixXf sgdiff(int k, double Fd)
+MatrixXf sgdiff(int k, int F, double Fd)
 {
   //We set the weighting matrix to an identity matrix if no weighting matrix is supplied
   MatrixXf W = MatrixXf::Identity(Fd, Fd);      
@@ -96,14 +89,14 @@ MatrixXf sgdiff(int k, double Fd)
   return B;
 }
 
-RowVectorXf savgolfilt(VectorXf x, VectorXf x_on, int k, int F)
+RowVectorXf savgolfilt(VectorXf const & x, VectorXf const & x_on, int k, int F, double Fd)
 {  
   Matrix4f DIM = Matrix4f::Zero();        //initialize DIM as a matrix of zeros if it is not supplied
   int siz = x.size();       //Reshape depth values by working along the first non-singleton dimension
 
   //Find leading singleton dimensions
   
-  MatrixXf B = sgdiff(k, Fd);       //retrieve matrix B
+  MatrixXf B = sgdiff(k, F, Fd);       //retrieve matrix B
 
   /*Transient On*/
   int id_size = (F+1)/2 - 1;
@@ -189,48 +182,3 @@ RowVectorXf savgolfilt(VectorXf x, VectorXf x_on, int k, int F)
 }
 
 
-int main (int argc, char** argv)
-{
-  float x_min, x_max;
-  if(argc>1)
-  {    
-    for(size_t i = 1; i < argc; ++i )
-    {
-      F = atoi(argv[1]);
-      k = atoi(argv[2]);
-      x_min = atoi(argv[3]);
-      x_max = atoi(argv[4]);
-    }
-  }
-  else  //use default values
-  {
-    F = 5; k = 3;
-    x_min = 900.0; x_max = 980.0;
-  }
-
-  Fd = (double) F;        //sets the frame size for the savgol differentiation coefficients. This must be odd
-
-  MatrixXi s = vander(F);        //Compute vandermonde matrix
-
-  std::cout << "Frame size: " << F << "; \tPolynomial order: " << k << std::endl;
-  cout << "\n Vandermonde Matrix: \n" << s  << endl;
-
-  k = atoi(argv[2]) or 3;
-
-  MatrixXf B = sgdiff(k, Fd);
-
-  VectorXf x_on = VectorXf::LinSpaced(F, x_min, x_max);     //collect the first five values into a matrix
-
-  //To express as a real filtering operation, we shift x around the nth time instant
-  VectorXf x = VectorXf::LinSpaced(F, x_min, x_max);
-
-  RowVectorXf Filter = savgolfilt(x, x_on, k, F);
-
-  cout <<"\n\nFiltered values in the range \n" << x.transpose().eval() <<"\n are: \n" << Filter << endl;
-
-  return 0;
-}
-
-/* Compile:
-cd ../; rm build -rf; mkdir build; cd build; cmake ../; make; ./savgol
-*/
