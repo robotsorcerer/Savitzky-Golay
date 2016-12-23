@@ -31,13 +31,13 @@ using namespace std;
 /*Compute the polynomial basis vectors s_0, s_1, s_2 ... s_n using the vandermonde matrix.*/
 MatrixXi vander(const int F)
 {
-  VectorXi v = VectorXi::LinSpaced(F,(-(F-1)/2),((F-1)/2)).transpose().eval();
+  auto v = VectorXi::LinSpaced(F,(-(F-1)/2),((F-1)/2)).transpose().eval();
 
   MatrixXi A(F, F+1);     //We basically compute an F X F+1 matrix;
 
-  for(int i = 0; i < F; ++ i)
+  for(auto i = 0; i < F; ++ i)
   {
-    for(int j=1; j < F+1; ++j)
+    for(auto j=1; j < F+1; ++j)
     {
       A(i,j) = pow(v(i), (j-1) ); 
     }
@@ -52,17 +52,17 @@ MatrixXi vander(const int F)
 MatrixXf sgdiff(int k, int F, double Fd)
 {
   //We set the weighting matrix to an identity matrix if no weighting matrix is supplied
-  MatrixXf W = MatrixXf::Identity(Fd, Fd);      
+  auto W = MatrixXf::Identity(Fd, Fd);      
 
   //Compute Projection Matrix B
-  MatrixXi s = vander(F);   
+  auto s = vander(F);   
 
   //Retrieve the rank deficient matrix from the projection matrix
-  MatrixXi S = s.block(0, 0, s.rows(), (k+1) ) ; 
+  auto S = s.block(0, 0, s.rows(), (k+1) ) ; 
 
   //Compute sqrt(W)*S
-  MatrixXf Sd = S.cast<float> ();    //cast S to float
-  MatrixXf inter = W * Sd;              //W is assumed to be identity. Change this if you have reasons to.
+  auto Sd = S.cast<float> ();    //cast S to float
+  auto inter = W * Sd;              //W is assumed to be identity. Change this if you have reasons to.
 
   //Compute the QR Decomposition
   HouseholderQR<MatrixXf> qr(inter);
@@ -70,14 +70,14 @@ MatrixXf sgdiff(int k, int F, double Fd)
 
   FullPivLU<MatrixXf>lu_decomp(inter);      //retrieve rank of matrix
   
-  int Rank = lu_decomp.rank() ;
+  auto Rank = lu_decomp.rank() ;
    
   //For rank deficient matrices. The S matrix block will always be rank deficient.        
-  MatrixXf Q = qr.householderQ();
+  // MatrixXf Q = qr.householderQ();  //unsused
   MatrixXf R = qr.matrixQR().topLeftCorner(Rank, Rank).template triangularView<Upper>();
 
   //Compute Matrix of Differentiators
-  MatrixXf Rinv = R.inverse();
+  auto Rinv = R.inverse();
   MatrixXf RinvT = Rinv.transpose();
 
   MatrixXf G = Sd * Rinv * RinvT;           /*G = S(S'S)^(-1)   -- eqn 8.3.90 (matrix of differentiation filters)*/
@@ -91,24 +91,24 @@ MatrixXf sgdiff(int k, int F, double Fd)
 
 RowVectorXf savgolfilt(VectorXf const & x, VectorXf const & x_on, int k, int F, double Fd)
 {  
-  Matrix4f DIM = Matrix4f::Zero();        //initialize DIM as a matrix of zeros if it is not supplied
-  int siz = x.size();       //Reshape depth values by working along the first non-singleton dimension
+  auto DIM = Matrix4f::Zero();        //initialize DIM as a matrix of zeros if it is not supplied
+  auto siz = x.size();       //Reshape depth values by working along the first non-singleton dimension
 
   //Find leading singleton dimensions
   
-  MatrixXf B = sgdiff(k, F, Fd);       //retrieve matrix B
+  auto B = sgdiff(k, F, Fd);       //retrieve matrix B
 
   /*Transient On*/
-  int id_size = (F+1)/2 - 1;
-  MatrixXf Bbutt = B.bottomLeftCorner((F-1)/2, B.cols());
+  auto id_size = (F+1)/2 - 1;
+  auto Bbutt = B.bottomLeftCorner((F-1)/2, B.cols());
 
-  int n = Bbutt.rows();
+  auto n = Bbutt.rows();
   //flip Bbutt from top all the way down 
   MatrixXf Bbuttflipped(n, Bbutt.cols());
  
-    for(int j = n - 1; j >= 0;)
+    for(auto j = n - 1; j >= 0;)
     { 
-      for(int i = 0; i < n ; ++i)
+      for(auto i = 0; i < n ; ++i)
       {        
         Bbuttflipped.row(i) = Bbutt.row(j);
         j--;
@@ -119,11 +119,11 @@ RowVectorXf savgolfilt(VectorXf const & x, VectorXf const & x_on, int k, int F, 
   VectorXf x_onflipped(x_on.rows(), x_on.cols());  //pre-allocate
   x_onflipped.transpose().eval();     
 
-  int m = x_on.size();                          //retrieve total # coefficients
+  auto m = x_on.size();                          //retrieve total # coefficients
 
-    for(int j = m -1; j >=0;)
+    for(auto j = m -1; j >=0;)
     {
-      for(int i = 0; i < m; ++i)
+      for(auto i = 0; i < m; ++i)
       {
         x_onflipped.row(i) = x_on.row(j);
         j--;
@@ -134,21 +134,21 @@ RowVectorXf savgolfilt(VectorXf const & x, VectorXf const & x_on, int k, int F, 
 
  /*Compute the steady state output*/
   size_t idzeroth = floor(B.cols()/2);
-  VectorXf Bzeroth = B.col(idzeroth);
-  VectorXf Bzerothf = Bzeroth.cast<float>();
+  auto Bzeroth = B.col(idzeroth);
+  auto Bzerothf = Bzeroth.cast<float>();
 
-  VectorXf y_ss = Bzerothf.transpose().eval() * x;     //This is the steady-state smoothed value
+  auto y_ss = Bzerothf.transpose().eval() * x;     //This is the steady-state smoothed value
 
   /*Compute the transient off for non-sequential data*/
-  MatrixXf Boff = B.topLeftCorner((F-1)/2, B.cols());
+  auto Boff = B.topLeftCorner((F-1)/2, B.cols());
 
-  int p = Boff.rows();                        //flip Boff along the horizontal axis
+  auto p = Boff.rows();                        //flip Boff along the horizontal axis
 
   MatrixXf Boff_flipped(p, Boff.cols());
     
-  for(int j = p - 1; j >= 0;)
+  for(auto j = p - 1; j >= 0;)
   { 
-    for(int i = 0; i < p ; ++i)
+    for(auto i = 0; i < p ; ++i)
     {        
       Boff_flipped.row(i) = Boff.row(j);
       j--;
@@ -159,20 +159,20 @@ RowVectorXf savgolfilt(VectorXf const & x, VectorXf const & x_on, int k, int F, 
   a way to let your compiler pick the last F-length samples from your data in order to compute your x_off. 
   You could have the program wait for x_milliseconds before you pick 
   the transient off, for example*/
-  VectorXf x_off = VectorXf::LinSpaced(F, x(0), x(F-1)).transpose();  
+  auto x_off = VectorXf::LinSpaced(F, x(0), x(F-1)).transpose();  
   VectorXf x_offflipped(x_off.rows(), x_off.cols());      //pre-allocate    
   //flip x_off along the horizontal axis
-    int q = x_off.size();                          //retrieve total # coefficients
+    auto q = x_off.size();                          //retrieve total # coefficients
 
-    for(int j = q -1; j >=0;)
+    for(auto j = q -1; j >=0;)
     {
-      for(int i = 0; i < q; ++i)
+      for(auto i = 0; i < q; ++i)
       {
         x_offflipped.row(i) = x_on.row(j);
         j--;
       }
     }
-  VectorXf y_off = Boff_flipped * x_offflipped;   //This is the transient off
+  auto y_off = Boff_flipped * x_offflipped;   //This is the transient off
 
   /*Make Y into the shape of X and retuen the smoothed values!*/
   RowVectorXf y(F);

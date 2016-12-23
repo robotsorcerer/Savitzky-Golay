@@ -36,7 +36,7 @@ int main (int argc, char** argv)
   float x_min, x_max;
   if(argc>1)
   {    
-    for(size_t i = 1; i < argc; ++i )
+    for(auto i = 1; i < argc; ++i )
     {
       F = atoi(argv[1]);
       k = atoi(argv[2]);
@@ -50,23 +50,23 @@ int main (int argc, char** argv)
     x_min = 900.0; x_max = 980.0;
   }
 
-  Fd = (double) F;        //sets the frame size for the savgol differentiation coefficients. This must be odd
+  Fd = static_cast<double>(F);        //sets the frame size for the savgol differentiation coefficients. This must be odd
 
-  MatrixXi s = vander(F);        //Compute vandermonde matrix
+  auto s = vander(F);        //Compute vandermonde matrix
 
-  std::cout << "Frame size: " << F << "; \tPolynomial order: " << k << std::endl;
+  cout << "Frame size: " << F << "; \tPolynomial order: " << k << endl;
   cout << "\n Vandermonde Matrix: \n" << s  << endl;
 
   k = atoi(argv[2]) or 3;
 
-  MatrixXf B = sgdiff(k, F, Fd);
+  auto B = sgdiff(k, F, Fd);
 
-  VectorXf x_on = VectorXf::LinSpaced(F, x_min, x_max);     //collect the first five values into a matrix
+  auto x_on = VectorXf::LinSpaced(F, x_min, x_max);     //collect the first five values into a matrix
 
   //To express as a real filtering operation, we shift x around the nth time instant
-  VectorXf x = VectorXf::LinSpaced(F, x_min, x_max);
+  auto x = VectorXf::LinSpaced(F, x_min, x_max);
 
-  RowVectorXf Filter = savgolfilt(x, x_on, k, F, Fd);
+  auto Filter = savgolfilt(x, x_on, k, F, Fd);
 
   cout <<"\n\nFiltered values in the range \n" << x.transpose().eval() <<"\n are: \n" << Filter << endl;
 
