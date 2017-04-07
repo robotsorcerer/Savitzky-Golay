@@ -28,6 +28,10 @@ In order to be able to compile this file, you would need to install the [Eigen3 
 ###Usage
 
 * `./savgol`
+  
+  __Options__
+
+  - -h or --help: print out helper menu for using code.
 
   - computes the savitzky-golay filter coefficients with frame size, `F = 5` and polynomial order 3 (these are the default parameters of the filter) for linearly spaced data points between `x_min = 900` and `x_max = 980`.
 

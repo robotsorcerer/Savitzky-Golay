@@ -27,6 +27,22 @@
 using namespace Eigen;
 using namespace std;
 
+void help()
+{
+  std::cout << "================================================== \n" 
+            << "USAGE:                                             \n"
+            << "\n"
+            << "./savgol [<frame_size> [<polynomial_order> [<x_low> <x_high>] ] ] \n" 
+            << "\n"
+            << "       <frame_size>: odd int and ideally greater than\n" 
+            << "       <polynomial_order>:  an integer             \n" 
+            << "\n"
+            << "       <x_low>, <x_high>: min and max limits of    \n"
+            << "       linspaced vector to be filtered.            \n"
+            << "===================================================\n" 
+            << "       Example: ./savgol 9 5   \n\n";;
+}
+
 
 int main (int argc, char** argv)
 {
@@ -34,14 +50,23 @@ int main (int argc, char** argv)
   int k;      //Example Polynomial Order
   double Fd ;
   float x_min, x_max;
+
   if(argc>1)
-  {    
-    for(auto i = 1; i < argc; ++i )
+  { 
+    if(argv[1] == "-h" || "-help")
     {
-      F = atoi(argv[1]);
-      k = atoi(argv[2]);
-      x_min = atoi(argv[3]);
-      x_max = atoi(argv[4]);
+      help();
+      return EXIT_SUCCESS;
+    }
+    else
+    {
+      for(auto i = 1; i < argc; ++i )
+      {
+        F = atoi(argv[1]);
+        k = atoi(argv[2]);
+        x_min = atoi(argv[3]);
+        x_max = atoi(argv[4]);
+      }
     }
   }
   else  //use default values
@@ -49,8 +74,6 @@ int main (int argc, char** argv)
     F = 5; k = 3;
     x_min = 900.0; x_max = 980.0;
   }
-
-  Fd = static_cast<double>(F);        //sets the frame size for the savgol differentiation coefficients. This must be odd
 
   auto s = vander(F);        //Compute vandermonde matrix
 
@@ -61,12 +84,10 @@ int main (int argc, char** argv)
 
   auto B = sgdiff(k, F, Fd);
 
-  auto x_on = VectorXf::LinSpaced(F, x_min, x_max);     //collect the first five values into a matrix
-
   //To express as a real filtering operation, we shift x around the nth time instant
   auto x = VectorXf::LinSpaced(F, x_min, x_max);
 
-  auto Filter = savgolfilt(x, x_on, k, F, Fd);
+  auto Filter = savgolfilt(x, k, F);
 
   cout <<"\n\nFiltered values in the range \n" << x.transpose().eval() <<"\n are: \n" << Filter << endl;
 

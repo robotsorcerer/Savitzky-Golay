@@ -48,7 +48,9 @@ MatrixXi vander(const int F)
   return A;
 }
 
-/*Compute the S-Golay Matrix of differentiators*/
+/*brief Compute the S-Golay Matrix of differentiators
+*
+*/
 MatrixXf sgdiff(int k, int F, double Fd)
 {
   //We set the weighting matrix to an identity matrix if no weighting matrix is supplied
@@ -89,13 +91,14 @@ MatrixXf sgdiff(int k, int F, double Fd)
   return B;
 }
 
-RowVectorXf savgolfilt(VectorXf const & x, VectorXf const & x_on, int k, int F, double Fd)
+RowVectorXf savgolfilt(VectorXf const & x, int k, int F)
 {  
   auto DIM = Matrix4f::Zero();        //initialize DIM as a matrix of zeros if it is not supplied
   auto siz = x.size();       //Reshape depth values by working along the first non-singleton dimension
 
   //Find leading singleton dimensions
-  
+  auto Fd = static_cast<double>(F);        //sets the frame size for the savgol differentiation coefficients. This must be odd
+
   auto B = sgdiff(k, F, Fd);       //retrieve matrix B
 
   /*Transient On*/
@@ -116,16 +119,16 @@ RowVectorXf savgolfilt(VectorXf const & x, VectorXf const & x_on, int k, int F, 
     }
     
   //flip x_on up and down as above
-  VectorXf x_onflipped(x_on.rows(), x_on.cols());  //pre-allocate
+  VectorXf x_onflipped(x.rows(), x.cols());  //pre-allocate
   x_onflipped.transpose().eval();     
 
-  auto m = x_on.size();                          //retrieve total # coefficients
+  auto m = x.size();                          //retrieve total # coefficients
 
     for(auto j = m -1; j >=0;)
     {
       for(auto i = 0; i < m; ++i)
       {
-        x_onflipped.row(i) = x_on.row(j);
+        x_onflipped.row(i) = x.row(j);
         j--;
       }
     }
@@ -155,7 +158,7 @@ RowVectorXf savgolfilt(VectorXf const & x, VectorXf const & x_on, int k, int F, 
     }
   }
 
-/*x_off will be the last (F-1) x values. Note, if you are smoothing in real time, you need to find 
+/*x_off will be the last (F-1) x-values. Note, if you are smoothing in real time, you need to find 
   a way to let your compiler pick the last F-length samples from your data in order to compute your x_off. 
   You could have the program wait for x_milliseconds before you pick 
   the transient off, for example*/
@@ -168,7 +171,7 @@ RowVectorXf savgolfilt(VectorXf const & x, VectorXf const & x_on, int k, int F, 
     {
       for(auto i = 0; i < q; ++i)
       {
-        x_offflipped.row(i) = x_on.row(j);
+        x_offflipped.row(i) = x.row(j);
         j--;
       }
     }
