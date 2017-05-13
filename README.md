@@ -1,8 +1,7 @@
 ## Savitzky-Golay Filter in C++
 
-Author: [Olalekan P. Ogunmolu](http://ecs.utdallas.edu/~opo140030)
-
-## Table of Contents
+Author: [Lekan Ogunmolu](http://ecs.utdallas.edu/~opo140030)
+# Table of Contents
 - [Introduction](#introduction)
 - [Dependencies](#dependencies)
 - [Usage](#usage)
@@ -14,7 +13,7 @@ Author: [Olalekan P. Ogunmolu](http://ecs.utdallas.edu/~opo140030)
 
 ### Introduction
 
-This code nicely computes the Vandermonde matrix, Savitzky-Golay differentiation filters and smoothing coefficients for any noisy, and sequantial signal. It is a textbook implementation of the Savitzky-Golay Filter. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort.
+ients for anyely computes the Vandermonde matrix, Savitzky-Golay differentiation filters and smoothing coefficients for any noisy, and sequential signal. It is a textbook implementation of the Savitzky-Golay Filter. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort.
 
 Below are examples of how the filter smoothes out a noisy depth map data from the kinect time-of-flight sensor:
 
