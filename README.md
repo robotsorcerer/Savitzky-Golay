@@ -13,7 +13,7 @@ Author: [Lekan Ogunmolu](http://ecs.utdallas.edu/~opo140030)
 
 ### Introduction
 
-ients for anyely computes the Vandermonde matrix, Savitzky-Golay differentiation filters and smoothing coefficients for any noisy, and sequential signal. It is a textbook implementation of the Savitzky-Golay Filter. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort.
+Nicely computes the Vandermonde matrix, Savitzky-Golay differentiation filters and smoothing coefficients for any noisy, and sequential signal. It is a textbook implementation of the Savitzky-Golay Filter. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort.
 
 Below are examples of how the filter smoothes out a noisy depth map data from the kinect time-of-flight sensor:
 
@@ -140,10 +140,10 @@ If you have issues running the files, please use the issues tab to open a bug. I
 * Added examples to `int main()` function (August 15, 2015)
 * Modified frame size and polynomial order to be reconfigurable at run time (July 1, 2016)
        
-###TODO
+### TODO
 Add a plotter to plot the filtered values on a gtk chart?
 
-###Reference
+### Reference
 
 **INTRODUCTION TO SIGNAL PROCESSING** 
 
