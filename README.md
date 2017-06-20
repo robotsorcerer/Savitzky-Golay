@@ -124,8 +124,6 @@ If you used `Savitzky-Golay` in your work, please cite it.
 @misc{Savitzky-Golay,
   author = {Ogunmolu, Olalekan},
   title = {{Savitzky-Golay Filter in C++}},
-  organization = {SEnsing, Robotics, Vision, Control and Estimation Lab},
-  address = {University of Texas at Dallas},
   year = {2015},
   howpublished = {\url{https://github.com/lakehanne/Savitzky-Golay}},
   note = {Accessed August 15, 2015}
