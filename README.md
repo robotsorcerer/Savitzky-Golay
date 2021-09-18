@@ -33,11 +33,9 @@ Below are examples of how the filter smoothes out a noisy depth map data from th
 
   - -h or --help: print out the help menu.
 
-  - Example: Compute the savitzky-golay filter coefficients with frame size, `F = 5` and polynomial order 3 (these are the default parameters of the filter) for linearly spaced data points between `x_min = 900` and `x_max = 980`.
+  - Example: Compute the savitzky-golay filter coefficients with frame size, `F = 5` and polynomial order 3 (these are the default parameters of the filter) for linearly spaced data points between `x_min = 900` and `x_max = 980`. A typical cmd line usage:
 
-  - To change the values of the frame size and polynomial order, do
-
-                     `./savgoal 9 5` where `F = 9` and `k = 5`.
+    `./savgoal 9 5` where `F = 9` and `k = 5`.
 
   - To pass in your arbitrary data points between a value `x_min` and `x_max`, run this way in order: ./savgoal `F` `k` `x_min` `x_max`.
 
